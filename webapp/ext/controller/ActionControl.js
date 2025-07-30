@@ -103,7 +103,7 @@ sap.ui.define(["sap/ui/core/Fragment",
                     reader.onload = function(evt) {
                         //file string
                         
-                        this.sBinaryData = evt.target.result;
+                        that.sBinaryData = evt.target.result;
                       //   sap.ui.core.util.File.save(sFileContent, "filename", "xls", "application/vnd.ms-excel");
                       //   that.sBinaryData = window.btoa(unescape(encodeURIComponent(sFileContent))); 
                         //that.sBinaryData  = that.convertBinaryToHex(raw).toUpperCase();                         
