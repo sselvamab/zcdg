@@ -103,13 +103,13 @@ sap.ui.define(["sap/ui/core/Fragment",
                     reader.onload = function(evt) {
                         //file string
                         
-                         var sFileContent = evt.target.result;
-                         sap.ui.core.util.File.save(sFileContent, "filename", "xls", "application/vnd.ms-excel");
-                        // that.sBinaryData = window.btoa(unescape(encodeURIComponent(sFileContent))); 
+                        this.sBinaryData = evt.target.result;
+                      //   sap.ui.core.util.File.save(sFileContent, "filename", "xls", "application/vnd.ms-excel");
+                      //   that.sBinaryData = window.btoa(unescape(encodeURIComponent(sFileContent))); 
                         //that.sBinaryData  = that.convertBinaryToHex(raw).toUpperCase();                         
                     };
                     //reader.readAsText(oFile);
-                    reader.readAsText(oFile);
+                    reader.readAsBinaryString(oFile);
                 } else {
                     //File Reader not supported
                     alert("Please Upload a CSV File!");
@@ -119,7 +119,6 @@ sap.ui.define(["sap/ui/core/Fragment",
             onUploadSet: function(oEvent) {
            
                 var operation = this._controller.extensionAPI.getModel().bindContext("/ZC_ATTACHMENT_DIP/com.sap.gateway.srvd.zui_attachment_dip_o4.v0001.LoadExcelContent(...)")
-                operation.setParameter("excelattachment", this.sBinaryData );
                 operation.setParameter("excelattachment", this.sBinaryData );
 
                 operation.execute()
