@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:upload="sap.m.upload">
+	<Dialog title="Excel Upload">
+
+	<l:VerticalLayout id="vert1">
+		<u:FileUploader
+			id="fileUploader1"
+			name="myFileUpload"
+			uploadUrl="upload/"
+			tooltip="Upload your file to the local server"
+			uploadComplete="handleUploadComplete"/>
+		<Button id="btn1"
+			text="Upload File"
+			press="handler.handleUploadPress" 
+			core:require="{ handler: 'zattachmentsample/ext/controller/ActionControl'}"/>
+<Button core:require="{ handler: 'zattachmentsample/ext/controller/ActionControl'}" id="BtnSuccess1" press="handler.onUploadSet" text="Submit" icon="sap-icon://accept" type="Success"/>				
+	</l:VerticalLayout>  
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,174 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "zattachmentsample",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.18.3",
+      "toolsId": "f726d7fe-ccce-4c18-94f9-ba566f108090"
+    },
+    "dataSources": {
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata4/sap/zui_attachment_dip_o4/srvd/sap/zui_attachment_dip_o4/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "zattach-manage": {
+          "semanticObject": "zattach",
+          "action": "manage",
+          "title": "{{zattach-manage.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.31",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zattachmentsample.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "ZC_ATTACHMENT_DIPList",
+          "target": "ZC_ATTACHMENT_DIPList"
+        },
+        {
+          "pattern": "ZC_ATTACHMENT_DIP({key}):?query:",
+          "name": "ZC_ATTACHMENT_DIPObjectPage",
+          "target": "ZC_ATTACHMENT_DIPObjectPage"
+        }
+      ],
+      "targets": {
+        "ZC_ATTACHMENT_DIPList": {
+          "type": "Component",
+          "id": "ZC_ATTACHMENT_DIPList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/ZC_ATTACHMENT_DIP",
+              "variantManagement": "Page",
+              "navigation": {
+                "ZC_ATTACHMENT_DIP": {
+                  "detail": {
+                    "route": "ZC_ATTACHMENT_DIPObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  },
+                  "actions": {
+                    "ActionControl": {
+                      "press": "zattachmentsample.ext.controller.ActionControl.openFileUpload",
+                      "visible": true,
+                      "enabled": true,
+                      "requiresSelection": false,
+                      "text": "Upload File"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ZC_ATTACHMENT_DIPObjectPage": {
+          "type": "Component",
+          "id": "ZC_ATTACHMENT_DIPObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/ZC_ATTACHMENT_DIP"
+            }
+          }
+        }
+      }
+    }
+
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
